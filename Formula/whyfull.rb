@@ -1,18 +1,18 @@
 class Whyfull < Formula
   desc "Find out why your disk is full, and free space safely"
   homepage "https://github.com/behnamazimi/whyfull"
-  version "0.2.0"
+  version "0.3.0"
 
   depends_on macos: :sequoia
 
   on_macos do
     on_arm do
       url "https://github.com/behnamazimi/whyfull/releases/download/v#{version}/whyfull-v#{version}-darwin-arm64.tar.gz"
-      sha256 "d27cb2fb10d06d09b632b59df5bedb12b5f4fc703b49ec696ee4734b2b549f37"
+      sha256 "fcedc125f8c3a8f80b71e4361ef8d2b9d6fa6a6fe60df6ff9727cdc95e5ac08c"
     end
     on_intel do
       url "https://github.com/behnamazimi/whyfull/releases/download/v#{version}/whyfull-v#{version}-darwin-x64.tar.gz"
-      sha256 "3c745087b3415b0b307b4d0d383c9dfb065a38cc623382f9377ff3a190146dc6"
+      sha256 "2ee0afcca4ca37f0f01aa90f280565c3547e6cbec81793dd8fd4703f4fb734fa"
     end
   end
 
