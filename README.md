@@ -14,4 +14,4 @@ brew install behnamazimi/tap/whyfull
 
 ## Keeping formulae current
 
-`.github/workflows/update-whyfull.yml` checks for a new whyfull release every six hours, regenerates `Formula/whyfull.rb` with `scripts/update-whyfull.sh`, and commits it. To update right away, run the workflow from the Actions tab. Don't edit the formula by hand; the script overwrites it.
+Each whyfull release triggers `.github/workflows/update-whyfull.yml`, which regenerates `Formula/whyfull.rb` with `scripts/update-whyfull.sh` and commits it. To run it by hand, use the Actions tab. Don't edit the formula by hand; the script overwrites it.
