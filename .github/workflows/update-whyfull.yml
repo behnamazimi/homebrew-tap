@@ -1,0 +1,37 @@
+name: Update whyfull
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write # commit the updated formula
+
+concurrency:
+  group: update-whyfull
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: macos-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Regenerate the formula from the latest release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: scripts/update-whyfull.sh
+      - name: Check the formula style
+        run: brew style Formula/whyfull.rb
+      - name: Commit and push
+        run: |
+          if git diff --quiet; then
+            echo "Nothing to commit."
+            exit 0
+          fi
+          version="$(sed -n 's/^  version "\(.*\)"$/\1/p' Formula/whyfull.rb)"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Update whyfull to $version"
+          git push
